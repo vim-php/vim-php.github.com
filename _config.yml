@@ -1,0 +1,16 @@
+title: Vim for PHP developers
+email: gianarb92@gmail.com
+description: >
+  Vim-Php is a community of PHP developer that use VIM every day
+  or occasionally to build your PHP projects.
+  This group leave to share experiences, trips and plugins
+baseurl: ""
+url: "http://vim-php.com"
+github_username:  vim-php
+exclude:
+    - "bower_components"
+    - "bower.json"
+    - "node_modules"
+    - "package.json"
+    - "Gruntfile.js"
+    - "bower.json"

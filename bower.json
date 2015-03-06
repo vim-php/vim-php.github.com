@@ -1,0 +1,10 @@
+{
+  "name": "vim-php",
+  "dependencies": {
+    "bootstrap": "3.3.2"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ]
+}
