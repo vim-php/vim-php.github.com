@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>Vim-Php <small>{{ page.title }}</small></h1>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="meta">{{ page.date | date_to_string }} - Tags: {{ page.tags }}</p>
+                <hr>
+                <div class="post">
+                {{ content }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES * * */
+                var disqus_shortname = 'vimphp';
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
+                    <li><a href="/dotfiles.html">Ours Dotfiles</a></li>
+                    <li class="nav-divider"></li>
+                    <li><a href="https://github.com/vim-php"><i class="fa fa-github"></i> GitHub</a></li>
+                </ul>
+            </nav>
+    </div>
+</div>

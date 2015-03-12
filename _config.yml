@@ -7,6 +7,7 @@ description: >
 baseurl: ""
 url: "http://vim-php.com"
 github_username:  vim-php
+paginate: 5
 exclude:
     - "bower_components"
     - "bower.json"
