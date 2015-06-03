@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "Composer knows the path of class file"
+date:   2015-06-03 23:00:00
+tags: vim, php, composer, sensorario
+category: plugin
+author: sensorario
+author_link: https://sensorario.github.io
+summary: Open class file witouht pass throuw ctag
+---
+
+I work with vi since late 2014. Starting from that date, I've learned different ways to work with this amazing and customizable editor. Since few weeks ago, I always worked with CtrlP to search a file. But, ... why type everytime class name for CtrlP instead of "grep" directly to composer's auto-generated files?
+
+First of all, I started to grep a class name in composer folder:
+
+{% highlight bash %}
+grep ParticularClassName ./vendor/composer -R | awk '{print $6}' | awk -F\\' '{print $2}'
+{% endhighlight %}
+
+This kind of instruction returns a path like <em>/src/Path/To/ParticularClassName.php</em>.
+
+Asking to stackoverflow, ... I discovered the way to retrieve bash output inside a variable:
+
+{% highlight bash %}
+let l:fileName = system(l:command)
+{% endhighlight %}
+
+Finally, I can open in new tab the result.
+
+{% highlight vim %}
+let l:fileName = system(l:command)
+let l:openFileCommand = 'tabe .' . l:fileName
+exec l:openFileCommand
+{% endhighlight %}
+
+My contribute to this [vim-composer](https://github.com/vim-php/vim-composer) plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".
