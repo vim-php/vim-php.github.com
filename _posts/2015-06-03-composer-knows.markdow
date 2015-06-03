@@ -33,4 +33,4 @@ let l:openFileCommand = 'tabe .' . l:fileName
 exec l:openFileCommand
 {% endhighlight %}
 
-<p>My contribute to this [vim-composer](https://github.com/vim-php/vim-composer) plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".</p>
+<p>My contribute to this <a href="https://github.com/vim-php/vim-composer">vim-composer</a> plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".</p>
