@@ -9,23 +9,23 @@ author_link: https://sensorario.github.io
 summary: Open class file witouht pass throuw ctag
 ---
 
-I work with vi since late 2014. Starting from that date, I've learned different ways to work with this amazing and customizable editor. Since few weeks ago, I always worked with CtrlP to search a file. But, ... why type everytime class name for CtrlP instead of "grep" directly to composer's auto-generated files?
+<p>I work with vi since late 2014. Starting from that date, I've learned different ways to work with this amazing and customizable editor. Since few weeks ago, I always worked with CtrlP to search a file. But, ... why type everytime class name for CtrlP instead of "grep" directly to composer's auto-generated files?</p>
 
-First of all, I started to grep a class name in composer folder:
+<p>First of all, I started to grep a class name in composer folder:</p>
 
 {% highlight bash %}
 grep ParticularClassName ./vendor/composer -R | awk '{print $6}' | awk -F\\' '{print $2}'
 {% endhighlight %}
 
-This kind of instruction returns a path like <em>/src/Path/To/ParticularClassName.php</em>.
+<p>This kind of instruction returns a path like <em>/src/Path/To/ParticularClassName.php</em>.</p>
 
-Asking to stackoverflow, ... I discovered the way to retrieve bash output inside a variable:
+<p>Asking to stackoverflow, ... I discovered the way to retrieve bash output inside a variable:</p>
 
 {% highlight bash %}
 let l:fileName = system(l:command)
 {% endhighlight %}
 
-Finally, I can open in new tab the result.
+<p>Finally, I can open in new tab the result.</p>
 
 {% highlight vim %}
 let l:fileName = system(l:command)
@@ -33,4 +33,4 @@ let l:openFileCommand = 'tabe .' . l:fileName
 exec l:openFileCommand
 {% endhighlight %}
 
-My contribute to this [vim-composer](https://github.com/vim-php/vim-composer) plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".
+<p>My contribute to this [vim-composer](https://github.com/vim-php/vim-composer) plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".</p>
