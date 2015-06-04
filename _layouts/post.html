@@ -3,21 +3,31 @@ layout: default
 ---
 <div class="row">
     <div class="col-md-12 text-center">
-        <h1>Vim-Php <small>{{ page.title }}</small></h1>
+        <h1>Vim-Php <small>The intersection between two beautiful communities</small></h1>
     </div>
 </div>
 
 <hr>
 
 <div class="row">
+  <div class="col-md-12">
+    <h2>{{ page.title }}</h2>
+  </div>
+</div>
+
+<div class="row">
 
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-12">
-                <p class="meta">{{ page.date | date_to_string }} - Tags: {{ page.tags }}</p>
+                <p class="meta">{{ page.date | date_to_string }} - <strong>Tags</strong>: {{ page.tags }} - <strong>Author: </strong><a href="{{ page.author_link }}" target="_blank">{{ page.author }}</a></p>
                 <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="post">
-                {{ content }}
+                    {{ content }}
                 </div>
             </div>
         </div>
