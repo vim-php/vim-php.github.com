@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Composer knows the path of class file"
-date:   2015-06-03 23:00:00
+title: "Composer knows the path of class file"
+date: 2015-06-08 23:00:00
 tags: vim, php, composer, sensorario
 category: plugin
 author: sensorario
@@ -11,36 +11,30 @@ summary: Open class file witouht pass throuw ctag
 
 <p>I work with vi since late 2014. Starting from that date, I've learned different ways to work with this amazing and customizable editor. Since few weeks ago, I always worked with CtrlP to search a file. But, ... why type everytime class name for CtrlP instead of "grep" directly to composer's auto-generated files?</p>
 
-<h2>grep composer to find the path</h2>
+<h2>Grep composer to find the path</h2>
 <p>First of all, I started to grep a class name in composer folder:</p>
-
 {% highlight bash %}
 grep ParticularClassName ./vendor/composer -R | awk '{print $6}' | awk -F\\' '{print $2}'
 {% endhighlight %}
-
 <p>This kind of instruction returns a path like <em>/src/Path/To/ParticularClassName.php</em>.</p>
 
-<h2>keep bash output inside a VimL variable</h2>
+<h2>Keep bash output inside a VimL variable</h2>
 <p>Asking to stackoverflow, ... I discovered the way to retrieve bash output inside a variable:</p>
-
 {% highlight bash %}
 let l:fileName = system(l:command)
 {% endhighlight %}
 
-<h2>open new tab form VimL</h2>
+<h2>Open new tab form VimL</h2>
 <p>Finally, I can open in new tab the result.</p>
-
 {% highlight vim %}
 let l:fileName = system(l:command)
 let l:openFileCommand = 'tabe .' . l:fileName
 exec l:openFileCommand
 {% endhighlight %}
-
 <p>My contribute to this <a href="https://github.com/vim-php/vim-composer">vim-composer</a> plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".</p>
 
-<h2>make plugin useful for custom improvements</h2>
+<h2>Make plugin useful for custom improvements</h2>
 <p>vim-composer is a specific plugin for composer. This must work even if developers has CtrlP, ctags or other plugin. And also, this plugin can help developers and/or others plugins. For example I work with CtrlP. Someone not (I cant believe but is possible). Someone works with ctags. Probably exists others plugin. I dont care. My contribute aims to help every kind of improvements. With my last pull request. I suggest an intresting improvement. The function "g:ComposerKnowWhereCurrentFileIs()" define some global variables if o or more instance of current word are find in composer aut-generated files. With this improvements developers can create, for example, a map that execute ComposerKnowWhereCurrentFileIs. If the function found one file, will open it. If not, .. CtrlP could be executed with this trick:</p>
-
 {% highlight php %}
 nnoremap <F6>call s:ComposerOrCtrlP()
 
