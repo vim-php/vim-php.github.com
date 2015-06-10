@@ -1,0 +1,56 @@
+---
+layout: post
+title: "Composer knows the path of class file"
+date: 2015-06-08 23:00:00
+tags: vim, php, composer, sensorario
+category: plugin
+author: sensorario
+author_link: https://sensorario.github.io
+summary: Open class file witouht pass throuw ctag
+---
+
+<p>I work with vi since late 2014. Starting from that date, I've learned different ways to work with this amazing and customizable editor. Since few weeks ago, I always worked with CtrlP to search a file. But, ... why type everytime class name for CtrlP instead of "grep" directly to composer's auto-generated files? But grep all times is a slow process so, ... why dont write a Vim script that do this stuff for me? Yeah! After this assumtions and after creation of a funciton I also discovered vim-composer plugin. So, ... I decided to share this function with the community. I hope you like that idea.</p>
+
+<p>And now, ... step by steps all the parts related to the function I've added to vim-composer. If you like, you can simply <a href="https://github.com/vim-php/vim-composer/commit/117279627adf9dfc4bd44c0b01c1f19580de609b">go to the commit</a> and just see the code.</p>
+
+<h2>Grep composer to find the path</h2>
+<p>First of all, I started to grep a class name in composer folder:</p>
+{% highlight bash %}
+grep ParticularClassName ./vendor/composer -R | awk '{print $6}' | awk -F\\' '{print $2}'
+{% endhighlight %}
+<p>This kind of instruction returns a path like <em>/src/Path/To/ParticularClassName.php</em>. And this, .. answer to the question, ... where is ParticularClassName located??</p>
+
+<h2>Keep bash output inside a VimL variable</h2>
+<p>Asking to stackoverflow, ... I discovered the way to <strong>capture bash output inside a variable</strong>:</p>
+{% highlight bash %}
+let l:fileName = system(l:command)
+{% endhighlight %}
+<p>This is amazing for me: I know bash better than Vim. I can leave to bash a lot of stuffs, and just execute little funcion in VimL.</p>
+
+<h2>Open new tab form VimL</h2>
+<p>Finally, I can open in new tab the result.</p>
+{% highlight vim %}
+let l:fileName = system(l:command)
+let l:openFileCommand = 'tabe .' . l:fileName
+exec l:openFileCommand
+{% endhighlight %}
+<p>My contribute to this <a href="https://github.com/vim-php/vim-composer">vim-composer</a> plugin is a way to open faslty a file, when we want open it. The principle is "when I see a class name, I want to open source file of that class, and I want ask this to composer".</p>
+
+<hr />
+
+<h2>Make plugin useful for custom improvements</h2>
+<p>vim-composer is a specific plugin for composer. This must work even if developers has CtrlP, ctags or other plugin. And also, this plugin can help developers and/or others plugins. For example I work with CtrlP. Someone not (I cant believe but is possible). Someone works with ctags. Probably exists others plugin. I dont care. My contribute aims to help every kind of improvements. With my last pull request. I suggest an intresting improvement. The function "g:ComposerKnowWhereCurrentFileIs()" define some global variables if o or more instance of current word are find in composer aut-generated files. With this improvements developers can create, for example, a map that execute ComposerKnowWhereCurrentFileIs. If the function found one file, will open it. If not, .. CtrlP could be executed with this trick:</p>
+{% highlight php %}
+nnoremap <F6>call s:ComposerOrCtrlP()
+
+function! s:SendCurrentWorldToCtrlP()
+    exec "normal \<c-p>" . g:currentWord
+endfunction
+
+function! s:ComposerOrCtrlP()
+    call g:ComposerKnowWhereCurrentFileIs()
+    if g:numberOfResults > 1
+        call s:SendCurrentWorldToCtrlP()
+    endif
+endfunction
+{% endhighlight %}
