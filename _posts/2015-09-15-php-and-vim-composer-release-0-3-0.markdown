@@ -2,9 +2,11 @@
 layout: post
 title:  "vim composer 0.3.0 is ready"
 date:   2015-09-15 23:08:27
+author: GianArb
+author_link: https://gianarb.it
 categories: php, vim
-tags: php, vim 
-summary: vim-composer is a plugin to manage integration between composer and vim 
+tags: php, vim
+summary: vim-composer is a plugin to manage integration between composer and vim
 priority: 0.6
 changefreq: yearly
 ---

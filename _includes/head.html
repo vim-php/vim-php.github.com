@@ -4,7 +4,19 @@
   <meta name="viewport" content="width=device-width initial-scale=1">
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
+
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="{{ page.tags }}">
+  <link rel="canonical" href="{{ site.url }}{{page.url}}">
+
+    <meta property="og:title" content="Vim-PHP Open Community for developers that work with VIM and PHP" />
+    <meta property="og:site_name" content="vim-php"/>
+    <meta property="og:url" content="{{ site.url }}{{page.url}}" />
+    <meta property="og:description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://avatars3.githubusercontent.com/u/2125030?v=3" />
 
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
 
